@@ -1,0 +1,6 @@
+module Pods_TestSpriteKit {
+  umbrella header "Pods-TestSpriteKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

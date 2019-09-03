@@ -6,6 +6,7 @@ target 'TestSpriteKit' do
   # use_frameworks!
 
   # Pods for TestSpriteKit
-
+pod 'YYKit'
+pod 'SDWebImage'
 
 end

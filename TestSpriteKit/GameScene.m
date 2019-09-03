@@ -22,17 +22,26 @@
 
 
 
-- (void)didMoveToView:(SKView *)view {
-//    self.bgScene = [SKSpriteNode spriteNodeWithImageNamed:@"snow01.jpg"];
-//    self.bgScene.size = CGSizeMake(1600, 1600);
-//    self.bgScene.anchorPoint = CGPointZero;
-//    self.bgScene.position = CGPointMake(0, 0);
-//    self.bgScene.zPosition = -1;
-//    [self addChild:self.bgScene];
-    
-    
-    [self setTileMap];
+- (instancetype)initWithSize:(CGSize)size {
+    self = [super initWithSize:size];
+    if (self) {
+        
+    }
+    return self;
+}
 
+
+- (void)didMoveToView:(SKView *)view {
+
+//    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"Sprites"];
+//    [atlas preloadWithCompletionHandler:^{
+    
+        CFTimeInterval bTime = CACurrentMediaTime();
+        [self setTileMap];
+        CFTimeInterval eTime = CACurrentMediaTime();
+        NSLog(@"tileTime--%f",eTime - bTime);
+        
+//    }];
     
     [self setCameraConstraints];
     
@@ -41,25 +50,40 @@
 
 - (void)setTileMap {
     
-    SKTileSet *tileSet = [SKTileSet tileSetNamed:@"Tile Set"];
     CGSize tileSize = CGSizeMake(108, 121);
-    NSInteger row = 16;
-    NSInteger columns = 10;
-    SKTileGroup *ground = tileSet.tileGroups.firstObject;
+    int rows = 16;
+    int columns = 10;
     
-    SKTileMapNode *tileMap = [SKTileMapNode tileMapNodeWithTileSet:tileSet columns:columns rows:row tileSize:tileSize];
-//    tileMap.enableAutomapping = YES;
-//    [tileMap setTileGroup:ground forColumn:columns row:row];
-//    [tileMap fillWithTileGroup:ground];
-    [self addChild:tileMap];
-    
-    for (int i = 0; i < columns; i++) {
-        for (int j = 0; j < row; j++) {
-            
+    NSMutableArray *definitionArr = [NSMutableArray array];
+    for (int i = rows-1; i >= 0; i--) {
+        for (int j = 0; j < columns; j++) {
+            int index = (i*10+j)%160;
+            SKTileDefinition *tileDefinition = [SKTileDefinition tileDefinitionWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"house_map_%d",index]] size:tileSize];
+            [definitionArr addObject:tileDefinition];
         }
     }
+    SKTileGroupRule *tileGroupRule = [SKTileGroupRule tileGroupRuleWithAdjacency:(SKTileAdjacencyAll) tileDefinitions:definitionArr];
+    SKTileGroup *landTileGroup = [SKTileGroup tileGroupWithRules:@[tileGroupRule]];
+    SKTileSet *tileSet = [SKTileSet tileSetWithTileGroups:@[landTileGroup] tileSetType:SKTileSetTypeGrid];
+    SKTileMapNode *tileMap = [SKTileMapNode tileMapNodeWithTileSet:tileSet columns:columns rows:rows tileSize:tileSize];
+//    [tileMap fillWithTileGroup:landTileGroup];
     
+    for (int i = 0; i < definitionArr.count; i++) {
+        
+        SKTileDefinition *definition = definitionArr[i];
+        
+        int column = i % 10;
+        int row = i / 10;
+        
+        [tileMap setTileGroup:landTileGroup andTileDefinition:definition forColumn:column row:row];
+
+    }
     
+    tileMap.position = CGPointMake(0, 0);
+    tileMap.anchorPoint = CGPointMake(0, 0);
+    tileMap.name = @"tileMap";
+//    tileMap.enableAutomapping = YES;
+    [self addChild:tileMap];
     
 }
 
@@ -68,6 +92,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
     self.bPoint = [touch locationInNode:self];
+    
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -94,6 +119,9 @@
 //    cameraNode.position = CGPointMake(cameraNode.frame.size.width/2, cameraNode.frame.size.height/2);
     [self addChild:cameraNode];
     self.camera = cameraNode;
+    SKTileMapNode *tileMap = (SKTileMapNode*)[self childNodeWithName:@"tileMap"];
+    self.camera.position = CGPointMake(tileMap.mapSize.width/2, tileMap.mapSize.height/2);
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     
     
     CGSize scaleSize = CGSizeMake(self.size.width * self.scene.xScale, self.size.height * self.scene.yScale);
@@ -114,6 +142,13 @@
 }
 
 
+
+
+
+- (void)update:(NSTimeInterval)currentTime {
+    
+    
+}
 
 
 

@@ -49,9 +49,12 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 }
 
 
+#pragma --
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     self.time = CACurrentMediaTime();
     

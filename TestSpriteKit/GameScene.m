@@ -85,6 +85,12 @@
 //    tileMap.enableAutomapping = YES;
     [self addChild:tileMap];
     
+    SKTileMapNode *tileMap1 = [tileMap copy];
+    tileMap1.position = CGPointMake(108 * 10, 0);
+    tileMap1.anchorPoint = CGPointMake(0, 0);
+    tileMap1.name = @"tileMap1";
+    [self addChild:tileMap1];
+    
 }
 
 
@@ -119,6 +125,7 @@
 //    cameraNode.position = CGPointMake(cameraNode.frame.size.width/2, cameraNode.frame.size.height/2);
     [self addChild:cameraNode];
     self.camera = cameraNode;
+    self.camera.zPosition = 3;
     SKTileMapNode *tileMap = (SKTileMapNode*)[self childNodeWithName:@"tileMap"];
     self.camera.position = CGPointMake(tileMap.mapSize.width/2, tileMap.mapSize.height/2);
 //    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];

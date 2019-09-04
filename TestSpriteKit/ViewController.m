@@ -88,7 +88,7 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     self.pframeList = output.resModel.bgframe;
     NSArray *modelList = [[self class] sortedArray:model.list];
     [self analyseMapList:modelList];
-    
+
     NSArray *sprites = self.mapDic[@"1"];
 
     int i = 0;
@@ -97,12 +97,17 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
         CGPoint position = [self getMapPinPositionWithSort:model.sort];
         model.contentPosition = position;
         i++;
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:model.onpic] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:model.onpic] options:kNilOptions progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             SKSpriteNode *spriteNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:image]];
             spriteNode.position = model.contentPosition;
+            spriteNode.size = CGSizeMake(108, 120);
+            spriteNode.name = @"buildNode";
+            spriteNode.zPosition = 2;
             [self.scene addChild:spriteNode];
-
         }];
+        
         if (i > 30) {
             break;
         }
@@ -197,7 +202,7 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
             CGFloat newScale = self.lastScale / pinch.scale;
             
             newScale = MIN(newScale, 2);
-            newScale = MAX(newScale, 0.5);
+            newScale = MAX(newScale, 1);
             
             self.scene.camera.xScale = newScale;
             self.scene.camera.yScale = newScale;
@@ -228,7 +233,7 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     shapeNode.name = @"shapeNode";
     [self.scene.camera addChild:shapeNode];
     
-    SpriteNode *node = [[SpriteNode alloc] initWithImageNamed:@"house_map_ground"];
+    SpriteNode *node = [[SpriteNode alloc] initWithImageNamed:@"build1"];
     node.userInteractionEnabled = YES;
     node.superNode = self.scene.camera;
     node.size = CGSizeMake(50, 50);
@@ -241,38 +246,60 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 }
 
 
-- (void)beginTouchSprite:(SKNode *)node insidePoint:(CGPoint)point {
+- (void)beginTouchSprite:(SKNode *)snode insidePoint:(CGPoint)point {
     
     self.boxNode.hidden = NO;
 
 }
 
-- (void)moveTouchSprite:(SKNode *)node insidePoint:(CGPoint)point {
+- (void)moveTouchSprite:(SKNode *)snode insidePoint:(CGPoint)point {
     
 }
 
-- (void)endTouchSprite:(SKNode *)node insidePoint:(CGPoint)point {
+- (void)endTouchSprite:(SKSpriteNode *)snode insidePoint:(CGPoint)point {
     
     
     if (self.boxNode) {
         self.boxNode.hidden = YES;
         
-        CGPoint curPoint = [node convertPoint:point toNode:self.scene];
+        CGPoint curPoint = [snode convertPoint:point toNode:self.scene];
         
-        if (CGRectContainsPoint(self.boxNode.frame, curPoint)) {
-            SpriteNode *newNode = [[SpriteNode alloc] initWithImageNamed:@"house_map_ground"];
-            newNode.position = self.boxNode.position;
-            newNode.size = CGSizeMake(50, 50);
-            [self.scene addChild:newNode];
-            
-            SKAction *action1 = [SKAction rotateToAngle:0.2 duration:0.05];
-            SKAction *action2 = [SKAction rotateToAngle:-0.2 duration:0.05];
-            [newNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[action1, action2]]]];
-            
-            [self.boxNode removeFromParent];
-            self.boxNode = nil;
-            
-        }
+        
+        [self.scene enumerateChildNodesWithName:@"buildNode" usingBlock:^(SKNode * _Nonnull node, BOOL * _Nonnull stop) {
+            SKSpriteNode *spriteNode = (SKSpriteNode*)node;
+            if (CGRectContainsPoint(spriteNode.frame, curPoint)) {
+                
+                [spriteNode removeFromParent];
+                
+                SKTexture *texture = spriteNode.texture;
+                
+                SKSpriteNode *newNode = [SKSpriteNode spriteNodeWithTexture:snode.texture];
+                newNode.position = spriteNode.position;
+                newNode.size = CGSizeMake(108, 120);
+                newNode.name = @"buildNode";
+                [self.scene addChild:newNode];
+
+                
+                snode.texture = texture;
+                
+                
+//                [self.boxNode removeFromParent];
+//                self.boxNode = nil;
+                
+            }
+        }];
+         
+        
+//        if (CGRectContainsPoint(self.boxNode.frame, curPoint)) {
+//            SpriteNode *newNode = [[SpriteNode alloc] initWithImageNamed:@"build1"];
+//            newNode.position = self.boxNode.position;
+//            newNode.size = CGSizeMake(50, 50);
+//            [self.scene addChild:newNode];
+//
+//            [self.boxNode removeFromParent];
+//            self.boxNode = nil;
+//
+//        }
     }
     
 }

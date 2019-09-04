@@ -18,6 +18,10 @@
 		58485E6E2315145B0066286B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58485E6C2315145B0066286B /* LaunchScreen.storyboard */; };
 		58485E712315145B0066286B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58485E702315145B0066286B /* main.m */; };
 		58485E9E231682250066286B /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 58485E9D231682250066286B /* GameScene.m */; };
+		586214AE231F613F00951879 /* DTHomelandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 586214AD231F613F00951879 /* DTHomelandViewController.m */; };
+		586214B1231F62D900951879 /* DTHomelandScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 586214B0231F62D900951879 /* DTHomelandScene.m */; };
+		586214B3231F63BA00951879 /* DTHomelandScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 586214B2231F63BA00951879 /* DTHomelandScene.sks */; };
+		586214B6231F670300951879 /* DTSKBulidNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 586214B5231F670300951879 /* DTSKBulidNode.m */; };
 		588B7453231CC9F50077E508 /* DTSKTileMapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 588B7452231CC9F50077E508 /* DTSKTileMapNode.m */; };
 		58EDCD602317CEDE000423B1 /* DTTiledMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDCD5E2317CEDD000423B1 /* DTTiledMapView.m */; };
 		58EDCD652317D39B000423B1 /* SpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDCD642317D39B000423B1 /* SpriteNode.m */; };
@@ -46,6 +50,13 @@
 		58485E702315145B0066286B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58485E9C231682250066286B /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		58485E9D231682250066286B /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		586214AC231F613F00951879 /* DTHomelandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTHomelandViewController.h; sourceTree = "<group>"; };
+		586214AD231F613F00951879 /* DTHomelandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTHomelandViewController.m; sourceTree = "<group>"; };
+		586214AF231F62D900951879 /* DTHomelandScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTHomelandScene.h; sourceTree = "<group>"; };
+		586214B0231F62D900951879 /* DTHomelandScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTHomelandScene.m; sourceTree = "<group>"; };
+		586214B2231F63BA00951879 /* DTHomelandScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DTHomelandScene.sks; sourceTree = "<group>"; };
+		586214B4231F670300951879 /* DTSKBulidNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTSKBulidNode.h; sourceTree = "<group>"; };
+		586214B5231F670300951879 /* DTSKBulidNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTSKBulidNode.m; sourceTree = "<group>"; };
 		588B7451231CC9F50077E508 /* DTSKTileMapNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTSKTileMapNode.h; sourceTree = "<group>"; };
 		588B7452231CC9F50077E508 /* DTSKTileMapNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTSKTileMapNode.m; sourceTree = "<group>"; };
 		58EDCD5E2317CEDD000423B1 /* DTTiledMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTiledMapView.m; sourceTree = "<group>"; };
@@ -108,20 +119,27 @@
 			children = (
 				58485E612315145A0066286B /* AppDelegate.h */,
 				58485E622315145A0066286B /* AppDelegate.m */,
+				586214AC231F613F00951879 /* DTHomelandViewController.h */,
+				586214AD231F613F00951879 /* DTHomelandViewController.m */,
+				586214AF231F62D900951879 /* DTHomelandScene.h */,
+				586214B0231F62D900951879 /* DTHomelandScene.m */,
+				586214B2231F63BA00951879 /* DTHomelandScene.sks */,
 				58485E642315145A0066286B /* ViewController.h */,
 				58485E652315145A0066286B /* ViewController.m */,
 				58485E9C231682250066286B /* GameScene.h */,
 				58485E9D231682250066286B /* GameScene.m */,
 				58EEFC7D231E0B7A00BB4106 /* DTAddControlNode.h */,
 				58EEFC7E231E0B7A00BB4106 /* DTAddControlNode.m */,
+				58EDCD942318F639000423B1 /* MyTileSet.sks */,
 				588B7451231CC9F50077E508 /* DTSKTileMapNode.h */,
 				588B7452231CC9F50077E508 /* DTSKTileMapNode.m */,
-				58EDCD942318F639000423B1 /* MyTileSet.sks */,
 				580EF0FE231915340098DDB7 /* MyTileSet1.sks */,
 				580EF100231915510098DDB7 /* MyTileSet2.sks */,
 				580EF102231915760098DDB7 /* MyTileSet3.sks */,
 				58EDCD632317D39B000423B1 /* SpriteNode.h */,
 				58EDCD642317D39B000423B1 /* SpriteNode.m */,
+				586214B4231F670300951879 /* DTSKBulidNode.h */,
+				586214B5231F670300951879 /* DTSKBulidNode.m */,
 				58EDCD5F2317CEDE000423B1 /* DTTiledMapView.h */,
 				58EDCD5E2317CEDD000423B1 /* DTTiledMapView.m */,
 				58485E672315145A0066286B /* Main.storyboard */,
@@ -208,6 +226,7 @@
 			files = (
 				58EEFC8C231E982F00BB4106 /* HouseMap.plist in Resources */,
 				58EEFC84231E864B00BB4106 /* BulidJson.json in Resources */,
+				586214B3231F63BA00951879 /* DTHomelandScene.sks in Resources */,
 				580EF103231915760098DDB7 /* MyTileSet3.sks in Resources */,
 				580EF101231915510098DDB7 /* MyTileSet2.sks in Resources */,
 				58EDCD952318F639000423B1 /* MyTileSet.sks in Resources */,
@@ -254,12 +273,15 @@
 				58EEFC87231E8B4900BB4106 /* DTHouseMapCommand.m in Sources */,
 				58EDCD602317CEDE000423B1 /* DTTiledMapView.m in Sources */,
 				58485E662315145A0066286B /* ViewController.m in Sources */,
+				586214B6231F670300951879 /* DTSKBulidNode.m in Sources */,
 				58485E712315145B0066286B /* main.m in Sources */,
 				58485E9E231682250066286B /* GameScene.m in Sources */,
+				586214B1231F62D900951879 /* DTHomelandScene.m in Sources */,
 				58EEFC7F231E0B7A00BB4106 /* DTAddControlNode.m in Sources */,
 				58485E632315145A0066286B /* AppDelegate.m in Sources */,
 				58EEFC8A231E8C6000BB4106 /* DTBaseCommand.m in Sources */,
 				588B7453231CC9F50077E508 /* DTSKTileMapNode.m in Sources */,
+				586214AE231F613F00951879 /* DTHomelandViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

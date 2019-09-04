@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol SpriteNodeDelegate <NSObject>
 
-- (void)beginTouchSprite:(SKNode*)node insidePoint:(CGPoint)point;
-- (void)moveTouchSprite:(SKNode*)node insidePoint:(CGPoint)point;
-- (void)endTouchSprite:(SKNode*)node insidePoint:(CGPoint)point;
+- (void)beginTouchSprite:(SKNode*)snode insidePoint:(CGPoint)point;
+- (void)moveTouchSprite:(SKNode*)snode insidePoint:(CGPoint)point;
+- (void)endTouchSprite:(SKNode*)snode insidePoint:(CGPoint)point;
 
 @end
 

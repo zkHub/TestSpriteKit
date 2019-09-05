@@ -60,7 +60,7 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 }
 
 
-#pragma -- dev
+#pragma -- develop
 
 - (void)viewDidLoad {
     [super viewDidLoad];

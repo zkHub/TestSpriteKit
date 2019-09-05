@@ -13,6 +13,9 @@
 #import "DTHouseMapCommand.h"
 
 #import <SDWebImage.h>
+#import <lottie-ios/Lottie/Lottie.h>
+
+
 
 static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 
@@ -31,15 +34,23 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 @property (nonatomic) CGFloat lastScale;
 
 
-@property(nonatomic, strong)NSMutableDictionary *mapDic;
+@property (nonatomic, strong) NSMutableDictionary *mapDic;
 
-@property(nonatomic, strong)NSArray<DTHouseMapPhotoBgModel *> *pframeList;
+@property (nonatomic, strong) NSArray<DTHouseMapPhotoBgModel *> *pframeList;
 
+@property (nonatomic, strong) LOTAnimationView *animationView;
 
 @end
 
 @implementation ViewController
 
+- (LOTAnimationView *)animationView {
+    if(!_animationView){
+        _animationView = [[LOTAnimationView alloc]init];
+        _animationView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return _animationView;
+}
 
 - (NSMutableDictionary *)mapDic {
     if (!_mapDic) {
@@ -57,10 +68,24 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     
     
     self.time = CACurrentMediaTime();
-    
+    self.lastScale = 1.0;
+
     SKView *skView = (SKView *) self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
+    
+    
+    
+    LOTComposition *composition = [LOTComposition animationNamed:@"mapbuild"];
+    [self.animationView setSceneModel:composition];
+    self.animationView.loopAnimation = YES;
+    self.animationView.frame = CGRectMake(100, 100, 100, 100);
+    self.animationView.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.lastScale, self.lastScale);
+    [self.animationView play];
+    [skView addSubview:self.animationView];
+    
+    
+    
     
     self.scene = [GameScene sceneWithSize:skView.frame.size];
     self.scene.backgroundColor = [SKColor cyanColor];
@@ -76,7 +101,6 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
     [skView addGestureRecognizer:pinch];
     
-    self.lastScale = 1.0;
     
     [self loadData];
     
@@ -209,13 +233,15 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
             
             self.scene.camera.xScale = newScale;
             self.scene.camera.yScale = newScale;
-            
+            [self resetAnimationScale:1/newScale];
+
         }
             break;
             
         case UIGestureRecognizerStateEnded:
         {
             self.lastScale = self.scene.camera.xScale;
+            [self resetAnimationScale:1/self.lastScale];
         }
             break;
             
@@ -225,6 +251,12 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     
    
 }
+
+- (void)resetAnimationScale:(CGFloat)scale {
+    self.animationView.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
+
+}
+
 
 
 - (void)viewDidAppear:(BOOL)animated {

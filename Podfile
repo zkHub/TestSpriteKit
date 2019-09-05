@@ -8,5 +8,7 @@ target 'TestSpriteKit' do
   # Pods for TestSpriteKit
 pod 'YYKit'
 pod 'SDWebImage'
+pod 'lottie-ios', '~> 2.5.2'
+
 
 end

@@ -11,6 +11,8 @@
 #import "GameScene.h"
 #import "SpriteNode.h"
 #import "DTHouseMapCommand.h"
+#import "TextureViewController.h"
+#import "SpineViewController.h"
 
 #import <SDWebImage.h>
 #import <lottie-ios/Lottie/Lottie.h>
@@ -40,6 +42,11 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 
 @property (nonatomic, strong) LOTAnimationView *animationView;
 
+
+@property (nonatomic, strong) SKTextureAtlas *atlas;
+@property (nonatomic, strong) NSMutableArray *textures;
+@property (nonatomic, strong) SKTexture *texture;
+
 @end
 
 @implementation ViewController
@@ -66,6 +73,22 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+//    for(NSString *familyName in [UIFont familyNames])
+//    {
+//        NSLog(@"familyName = %@", familyName);
+//
+//        for(NSString *fontName in [UIFont fontNamesForFamilyName:familyName])
+//        {
+//            NSLog(@"\tfontName = %@", fontName);
+//        }
+//    }
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        SpineViewController *spineVC = [[SpineViewController alloc] init];
+        [self presentViewController:spineVC animated:YES completion:nil];
+    }];
+    [self.view addGestureRecognizer:tap];
+    return;
     
     self.time = CACurrentMediaTime();
     self.lastScale = 1.0;
@@ -74,8 +97,7 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
-    
-    
+
     LOTComposition *composition = [LOTComposition animationNamed:@"mapbuild"];
     [self.animationView setSceneModel:composition];
     self.animationView.loopAnimation = YES;
@@ -83,8 +105,6 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     self.animationView.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.lastScale, self.lastScale);
     [self.animationView play];
     [skView addSubview:self.animationView];
-    
-    
     
     
     self.scene = [GameScene sceneWithSize:skView.frame.size];
@@ -100,11 +120,19 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
     
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
     [skView addGestureRecognizer:pinch];
+
+
+//    [self loadData];
     
     
-    [self loadData];
+    
+    
     
 }
+
+
+
+
 
 - (void)loadData {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"BulidJson" ofType:@"json"];

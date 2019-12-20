@@ -83,12 +83,12 @@ static const CGFloat KDEFAULT_MAP_IMAGE_HEIGHT = 3888.0;
 //        }
 //    }
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-        SpineViewController *spineVC = [[SpineViewController alloc] init];
-        [self presentViewController:spineVC animated:YES completion:nil];
-    }];
-    [self.view addGestureRecognizer:tap];
-    return;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+//        SpineViewController *spineVC = [[SpineViewController alloc] init];
+//        [self presentViewController:spineVC animated:YES completion:nil];
+//    }];
+//    [self.view addGestureRecognizer:tap];
+//    return;
     
     self.time = CACurrentMediaTime();
     self.lastScale = 1.0;

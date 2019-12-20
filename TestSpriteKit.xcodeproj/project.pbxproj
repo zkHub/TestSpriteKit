@@ -197,6 +197,8 @@
 		586214B3231F63BA00951879 /* DTHomelandScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 586214B2231F63BA00951879 /* DTHomelandScene.sks */; };
 		586214B6231F670300951879 /* DTSKBulidNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 586214B5231F670300951879 /* DTSKBulidNode.m */; };
 		588B7453231CC9F50077E508 /* DTSKTileMapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 588B7452231CC9F50077E508 /* DTSKTileMapNode.m */; };
+		589663BB23A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 589663BA23A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.m */; };
+		589663BE23A0F12300CF7E0E /* NSObject+AssociatedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 589663BC23A0F12200CF7E0E /* NSObject+AssociatedObject.m */; };
 		58A706BD23853827002DD891 /* SpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A706BC23853827002DD891 /* SpineViewController.m */; };
 		58EDCD602317CEDE000423B1 /* DTTiledMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDCD5E2317CEDD000423B1 /* DTTiledMapView.m */; };
 		58EDCD652317D39B000423B1 /* SpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDCD642317D39B000423B1 /* SpriteNode.m */; };
@@ -450,6 +452,10 @@
 		586214B5231F670300951879 /* DTSKBulidNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTSKBulidNode.m; sourceTree = "<group>"; };
 		588B7451231CC9F50077E508 /* DTSKTileMapNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTSKTileMapNode.h; sourceTree = "<group>"; };
 		588B7452231CC9F50077E508 /* DTSKTileMapNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTSKTileMapNode.m; sourceTree = "<group>"; };
+		589663B923A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+DTSerialAnimation.h"; sourceTree = "<group>"; };
+		589663BA23A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+DTSerialAnimation.m"; sourceTree = "<group>"; };
+		589663BC23A0F12200CF7E0E /* NSObject+AssociatedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AssociatedObject.m"; sourceTree = "<group>"; };
+		589663BD23A0F12300CF7E0E /* NSObject+AssociatedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AssociatedObject.h"; sourceTree = "<group>"; };
 		58A706BB23853827002DD891 /* SpineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpineViewController.h; sourceTree = "<group>"; };
 		58A706BC23853827002DD891 /* SpineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpineViewController.m; sourceTree = "<group>"; };
 		58EDCD5E2317CEDD000423B1 /* DTTiledMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTiledMapView.m; sourceTree = "<group>"; };
@@ -828,6 +834,10 @@
 				586214B2231F63BA00951879 /* DTHomelandScene.sks */,
 				58485E642315145A0066286B /* ViewController.h */,
 				58485E652315145A0066286B /* ViewController.m */,
+				589663B923A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.h */,
+				589663BA23A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.m */,
+				589663BD23A0F12300CF7E0E /* NSObject+AssociatedObject.h */,
+				589663BC23A0F12200CF7E0E /* NSObject+AssociatedObject.m */,
 				580959EF234F0D3C002F6FC8 /* TextureViewController.h */,
 				580959F0234F0D3C002F6FC8 /* TextureViewController.m */,
 				58A706BB23853827002DD891 /* SpineViewController.h */,
@@ -1140,7 +1150,9 @@
 				581FE33623584CDA00A1B7BA /* ClippingAttachment.c in Sources */,
 				581FE32523584CDA00A1B7BA /* IkConstraint.c in Sources */,
 				58A706BD23853827002DD891 /* SpineViewController.m in Sources */,
+				589663BE23A0F12300CF7E0E /* NSObject+AssociatedObject.m in Sources */,
 				581FE32823584CDA00A1B7BA /* AnimationState.c in Sources */,
+				589663BB23A0F0DD00CF7E0E /* CALayer+DTSerialAnimation.m in Sources */,
 				58485E9E231682250066286B /* GameScene.m in Sources */,
 				581FE32F23584CDA00A1B7BA /* Animation.c in Sources */,
 				581FE32723584CDA00A1B7BA /* MeshAttachment.c in Sources */,
